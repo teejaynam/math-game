@@ -1,12 +1,13 @@
 class Player
+    attr_accessor :number, :score
 
     def initialize(number)
         @number = number
-        score = 0
+        @score = 3
     end
 
-    def addScore(player)
-        player.score = player.score + 1;
+    def decreaseScore(points)
+        @score -= points
     end
 
 end
