@@ -1,4 +1,4 @@
-require "player.rb"
+require_relative 'player'
 
 class MathGame
 
@@ -43,7 +43,7 @@ class MathGame
             puts "Player #{@p1.number}: You are wrong!"
         end
 
-        checkScore()
+        checkScore(@p1, @p2)
 
     end
 
