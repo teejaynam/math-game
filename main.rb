@@ -1,50 +1,49 @@
-class Player
-
-    def initialize(number)
-        @number = number
-        score = 0
-    end
-
-    def addScore(player)
-        player.score = player.score + 1;
-    end
-
-end
+require "player.rb"
 
 class MathGame
 
-    def initialize()
-        p1 = Player.new(1)
-        p2 = Player.new(2)
-        startGame(p1, p2)
+    def initialize
+        @p1 = Player.new(1)
+        @p2 = Player.new(2)
+        startGame()
     end
 
-    def startGame(player1, player2)
+    def startGame()
         answer1 = 8
         answer2 = 10
         answer3 = 14
 
-        puts "Player #{player1}: What does 5 + 3 = ?"
-        player2Answer1 = gets
+        puts "Player #{@p1.number}: What does 5 + 3 = ?"
+        player2Answer1 = gets.chomp.to_i
 
-        if player2Answer1 = answer1
-            puts "Player #{player1}: You are correct!"
-            player.addScore(p2)
+        if player2Answer1 == answer1
+            puts "Player #{@p1.number}: You are correct!"
+            @p2.decreaseScore(1)
         elsif 
-            puts "Player #{player1}: You are wrong!"
+            puts "Player #{@p1.number}: You are wrong!"
         end
 
-        puts "Player #{player2}: What does 24 - 14 = ?"
-        player1Answer2 = gets
+        puts "Player #{@p2.number}: What does 24 - 14 = ?"
+        player1Answer2 = gets.chomp.to_i
 
-        if player1Answer2 = answer2
-            puts "Player #{player2}: You are correct!"
-            player.addScore(p1)
+        if player1Answer2 == answer2
+            puts "Player #{@p2.number}: You are correct!"
+            @p1.decreaseScore(1)
         elsif 
-            puts "Player #{player2}: You are wrong!"
+            puts "Player #{@p2.number}: You are wrong!"
         end
 
-        checkScore(p1,p2)
+        puts "Player #{@p1.number}: What does 78 - 64 = ?"
+        player2Answer3 = gets.chomp.to_i
+
+        if player1Answer2 == answer3
+            puts "Player #{@p1.number}: You are correct!"
+            @p1.decreaseScore(1)
+        elsif 
+            puts "Player #{@p1.number}: You are wrong!"
+        end
+
+        checkScore()
 
     end
 
@@ -53,13 +52,13 @@ class MathGame
     end
 
     def checkScore(player1, player2)
-        if player1.score > player2.score
-            endGame(player1)
+        if @p1.score > @p2.score
+            endGame(@p1)
         elsif
-            endGame(player2)
+            endGame(@p2)
         end
     end
 
 end
 
-start = MathGame();
+start = MathGame.new
